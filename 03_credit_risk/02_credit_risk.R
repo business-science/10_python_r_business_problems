@@ -12,7 +12,7 @@ set.seed(0)
 data_size <- 1000
 credit_scores <- rnorm(data_size, mean=600, sd=100)
 annual_incomes <- rnorm(data_size, mean=50000, sd=15000)
-credit_risks <- ifelse(credit_scores < 580 | annual_incomes < 30000, 1, 0) # Simplified risk criteria
+credit_risks <- ifelse(credit_scores < 580 | annual_incomes < 30000, 1, 0) 
 
 # Create a tibble
 data <- tibble(
@@ -56,4 +56,4 @@ conf_mat <- workflow %>%
   bind_cols(test_data) %>%
   conf_mat(truth = credit_risk, estimate = .pred_class)
 
-print(conf_mat)
+autoplot(conf_mat, type = "heatmap")
