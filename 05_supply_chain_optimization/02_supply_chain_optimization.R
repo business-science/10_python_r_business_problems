@@ -31,9 +31,23 @@ directions <- c("<=", ">=", ">=")
 # Solve the linear programming problem
 solution <- lp("min", objective, constraints, directions, rhs)
 
-# Output the results
-print("Solution is optimal")
-print(paste("Optimal Production units:", solution$solution[1]))
-print(paste("Optimal Transport units:", solution$solution[2]))
-print(paste("Total Cost:", solution$objval))
+
+# Check if the solution is optimal
+if(solution$status == 0) {
+  print("Solution is optimal")
+  print(paste("Optimal Production units:", solution$solution[1]))
+  print(paste("Optimal Transport units:", solution$solution[2]))
+  print(paste("Total Cost:", solution$objval))
+} else {
+  print("Solution is not optimal")
+  if(solution$status == 1) {
+    print("Solution is infeasible")
+  } else if(solution$status == 2) {
+    print("Solution is unbounded")
+  } else if(solution$status == 3) {
+    print("Solution is degenerate")
+  } else {
+    print("Solution could not be found due to numerical difficulties")
+  }
+}
 
