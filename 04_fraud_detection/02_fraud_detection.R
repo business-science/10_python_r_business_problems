@@ -1,3 +1,6 @@
+# BUSINESS PROBLEMS THAT CAN BE SOLVED WITH DATA SCIENCE
+# PROJECT 4: FRAUD DETECTION
+
 library(tidyverse)
 library(tidymodels)
 library(xgboost)
